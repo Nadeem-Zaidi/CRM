@@ -1,0 +1,29 @@
+// func SingleRow(withid int, columnname []string) {
+// 	pexception.RecoverFromPanic()
+// 	if len(columnname) == 1 {
+// 		query := fmt.Sprintf("SELECT %s from %s WHERE id=%d", columnname, databasename, withid)
+// 		print(query)
+// 	} else {
+// 		s := tupletype.FetchTuple(columnname)
+// 		query := fmt.Sprintf("SELECT %s from %s where id=%d", s, databasename, withid)
+// 		fmt.Println(query)
+// 	}
+
+// }
+
+// func (a *DataBaseApp) All() {
+// 	var p schema.Product
+// 	query := `select * from products`
+// 	ctx, cancelFunc := context.WithTimeout(context.Background(), 5*time.Second)
+// 	defer cancelFunc()
+// 	stmt, err := a.DB.PrepareContext(ctx, query)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 	}
+// 	defer stmt.Close()
+// 	row := stmt.QueryRowContext(ctx)
+// 	if err := row.Scan(&p.ID, &p.Name, &p.Price); err != nil {
+// 		fmt.Println(err)
+// 	}
+// 	fmt.Println(p.Name, p.Price)
+//}

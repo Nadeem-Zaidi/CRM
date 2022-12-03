@@ -1,0 +1,32 @@
+
+
+func Insert(data interface{}) {
+	d := reflect.ValueOf(data)
+	propertyNameList := make([]string, 0)
+	valueNameList := make([]string, 0)
+
+	for i := 0; i < d.Type().NumField(); i++ {
+		property := d.Type().Field(i).Name
+		p := fmt.Sprintf("`%s`", property)
+		propertyNameList = append(propertyNameList, p)
+		propertyType := d.Type().Field(i).Type
+		values := d.Field(i)
+		fmt.Println(propertyType)
+		if propertyType.Kind() == reflect.Int || propertyType.Kind() == reflect.Float64 {
+			r := fmt.Sprintf("%v", values)
+			valueNameList = append(valueNameList, r)
+
+		} else {
+			r := fmt.Sprintf("\"%s\"", values)
+			valueNameList = append(valueNameList, r)
+
+		}
+
+	}
+	tablename := strings.Split(reflect.TypeOf(data).String(), ".")
+	propertyNameString := strings.Join(propertyNameList, ",")
+	valueNameString := strings.Join(valueNameList, ",")
+
+	query := fmt.Sprintf("INSERT INTO %s(%s) VALUES (%s);", tablename[1], propertyNameString, valueNameString)
+	fmt.Println(query)
+}
